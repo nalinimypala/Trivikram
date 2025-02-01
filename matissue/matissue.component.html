@@ -1,0 +1,110 @@
+<div class="col-md-3" style="display: flex; align-items: center; gap: 50px;">
+  <label for="basedate" style="margin: 0;">BaseDate</label>
+  <input type="text" class="form-control" id="basedate" [(ngModel)]="baseDate" />
+</div>
+
+<br />
+<div class="col-md-3" style="display: flex; align-items: self-end; gap: 70px;">
+    <label for="plant" style="margin: 0;">Plant</label>
+    <input type="text" class="form-control" id="plant" [(ngModel)]="plant" />
+  </div>
+<br />
+<div class="col-md-3" style="display: flex; align-items: center; gap: 5px;">
+  <label for="movementtype" style="margin: 0;">MovementType</label>
+  <input
+    type="text"
+    class="form-control"
+    id="movementtype"
+    [(ngModel)]="movementType"
+    (input)="updateSubFieldsAndTable()"
+  />
+</div>
+
+<!-- Subfields (conditionally shown) -->
+<div *ngIf="showSubFields" style="margin-top: 20px;">
+<div class="col-md-3" style="display: flex; align-items: center; gap: 50px;">
+    <label for="goodRecipient" style="margin: 0;">GoodRecipient</label>
+    <input type="text" class="form-control" id="goodRecipient" [(ngModel)]="goodRecipient" />
+  </div>
+  <br />
+  <div class="col-md-3" style="display: flex; align-items: center; gap: 3px;">
+    <label for="receivingstor.Loc" class="mb-0">ReceivingStor.Loc</label>
+    <input type="text" class="form-control" id="receivingstor.Loc" [(ngModel)]="receivingStorLoc" (input)="logReceivingStorLoc()" />
+  </div>
+  
+  <br />
+  <!-- Table for Subfields -->
+<div *ngIf="showSubFields" style="margin-top: 20px;">
+    <h4>Items</h4>
+    <table class="table table-bordered" style="width: auto;">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Material</th>
+          <th>Quantity</th>
+          <th>UnE</th>
+          <th>Plant</th>
+          <th>Storage Loc</th>
+          <th>Batch</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td><input type="text" [(ngModel)]="item.material" class="form-control"  (dblclick)="showDetailsTable(i)" /></td>
+          <td><input type="number" [(ngModel)]="item.quantity" class="form-control" /></td>
+          <td><input type="text" [(ngModel)]="item.unit" class="form-control" /></td>
+          <td><input type="text" [(ngModel)]="item.plant" class="form-control" /></td>
+          <td><input type="text" [(ngModel)]="item.storageLoc" class="form-control" /></td>
+          <td><input type="text" [(ngModel)]="item.batch" class="form-control" /></td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="deleteItem(i)">Delete</button>
+          </td>
+        </tr>
+
+    </table>
+  
+    <!-- Add Item Button -->
+     <button class="btn btn-primary" (click)="addRow()">Add Row</button>
+    <button class="btn btn-primary" (click)="addItem()">Add Item</button>
+</div>
+</div>
+<div *ngIf="showDetailsIndex !== null && items[showDetailsIndex]" style="margin-top: 20px;">
+  <h4>Quantity</h4>
+  <table class="table table-bordered" style="width: auto;">
+    <thead>
+      <tr>
+        <th>Field Name</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Unit of Entry</td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="items[showDetailsIndex].unit"
+            class="form-control"
+            placeholder="Enter Unit of Entry"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>SKU</td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="items[showDetailsIndex].sku"
+            class="form-control"
+            placeholder="Enter SKU"
+          />
+        </td>
+      </tr>
+     </tbody>
+  </table>
+  <button class="btn btn-secondary" (click)="closeDetailsTable()">Close</button>
+</div>
+
+
+  
