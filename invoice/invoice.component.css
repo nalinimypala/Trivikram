@@ -1,0 +1,51 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        .invoice-container {
+            width: 800px;
+            border: 2px solid rgb(232, 116, 116);
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+        }
+        .header h1 {
+            color: rgb(104, 104, 220);
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        .sub-header {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .table, .table th, .table td {
+            border: 1px solid black;
+        }
+        .table th, .table td {
+            padding: 10px;
+            text-align: left;
+        }
+        .bank-details {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid rgb(11, 10, 10);
+        }
+        .note {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .signature {
+            text-align: right;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    
